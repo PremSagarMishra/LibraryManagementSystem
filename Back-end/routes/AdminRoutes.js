@@ -12,12 +12,12 @@ router.post("/admin/signup", adminSignupMiddleware, (req, res) => {
     Admins.findOne({ username: req.body.username })
         .then(foundAdmin => {
             if (foundAdmin) {
-                res.send("User already exists");
+                res.send("Error User already exists");
             } else {
                 // Adding new admin
                 const password=(req.body.password).toString();
                 if(password.length<8){
-                    res.send("Password length should be more than 8 characters")
+                    res.send("Error Password length should be more than 8 characters")
                     return;
                 }
                 const newAdmin = new Admins({
@@ -40,11 +40,12 @@ router.post("/admin/signup", adminSignupMiddleware, (req, res) => {
 });
 //route to login using username and password
 router.post("/admin/login",adminLoginMiddleware,(req,res)=>{
+    console.log(req.body.username,req.body.password)
     Admins.findOne({username:req.body.username,password:req.body.password}).then(foundAdmin=>{
         if(foundAdmin){
             res.send("admin "+foundAdmin._id)
         }else{
-            res.send("No user found")
+            res.send("Error Admin not found")
         }
     }).catch(err=>{
         res.send("Error logging in: "+err)
@@ -58,7 +59,7 @@ router.get("/admin/profile",adminMiddleware,(req,res)=>{
             res.send(foundAdmin)
         }
         else{
-            res.send("Admin not found")
+            res.send("Error Admin not found")
         }
     })
     .catch(err =>{
@@ -75,7 +76,7 @@ router.put("/admin/profile", adminMiddleware, (req, res) => {
     const adminId = req.body.auth;
 
     if (!name || !doj) {
-        return res.status(400).send("Please provide all required fields.");
+        return res.status(400).send("Error Please provide all required fields.");
     }
 
     Admins.findByIdAndUpdate({_id:adminId}, { name, doj }, { new: true })
@@ -83,7 +84,7 @@ router.put("/admin/profile", adminMiddleware, (req, res) => {
             if (updatedStudent) {
                 res.send(updatedStudent);
             } else {
-                res.status(404).send("Admin not found.");
+                res.status(404).send("Error Admin not found.");
             }
         })
         .catch(err => {

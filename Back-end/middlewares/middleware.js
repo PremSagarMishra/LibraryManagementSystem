@@ -11,19 +11,20 @@ const adminSignupMiddleware=(req,res,next)=>{
 
 const adminLoginMiddleware=(req,res,next)=>{
     if(!req.body.username||!req.body.password){
-        res.send("Enter login details")
+        res.send(" Error Enter login details")
     }else {
         next();
     }
 }
 
 const studentMiddleware= (req,res,next)=>{
-    if(!req.body.auth){
+    if(!req.query.auth){
         res.send("Unauthorised")
+        console.log(req.header.auth)
         return;
     }
-    const key=(req.body.auth)
-    
+    const key=(req.query.auth)
+    console.log(req.query.auth)
         Students.find({id:key})
         .then((foundStudent)=>{
             if(foundStudent){

@@ -3,8 +3,17 @@ import admin from "../assets/admin.webp";
 import student from "../assets/student.png";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { UserContext } from "../App";
 const RoleSelection = () => {
   const navigate=useNavigate();
+
+  const {loggedIn}=useContext(UserContext)
+
+  if(loggedIn==true){
+    navigate("/home")
+  }
+
   return (
     <div className="container">
       <div className="card">
