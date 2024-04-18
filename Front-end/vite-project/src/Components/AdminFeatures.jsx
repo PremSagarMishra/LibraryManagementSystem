@@ -10,12 +10,8 @@ export const AdminFeatures=[{
     title:"View Books",
     link:"/admin/books"
 },{
-    title:"New Books transaction",
+    title:"Books transaction",
     link:"/admin/booktransactions"
-},
-{
-    title:"View Books transactions",
-    link:"/admin/showbooktransactions"
 },
 {
     title:"logout",

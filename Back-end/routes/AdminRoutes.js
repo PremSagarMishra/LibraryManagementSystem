@@ -53,7 +53,7 @@ router.post("/admin/login",adminLoginMiddleware,(req,res)=>{
 })
 //route to get the detail of admin profile
 router.get("/admin/profile",adminMiddleware,(req,res)=>{
-    Admins.findOne({_id:req.body.auth})
+    Admins.findOne({_id:req.query.auth})
     .then(foundAdmin =>{
         if(foundAdmin){
             res.send(foundAdmin)
@@ -72,14 +72,14 @@ router.get("/admin/profile",adminMiddleware,(req,res)=>{
 
 //route to edit the profile details of the admin
 router.put("/admin/profile", adminMiddleware, (req, res) => {
-    const { name, doj} = req.body;
-    const adminId = req.body.auth;
+    const { name, doj,password,username} = req.body;
+    const adminId = req.query.auth;
 
     if (!name || !doj) {
         return res.status(400).send("Error Please provide all required fields.");
     }
 
-    Admins.findByIdAndUpdate({_id:adminId}, { name, doj }, { new: true })
+    Admins.findByIdAndUpdate({_id:adminId}, { name, doj ,password,username}, { new: true })
         .then(updatedStudent => {
             if (updatedStudent) {
                 res.send(updatedStudent);

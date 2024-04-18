@@ -111,6 +111,41 @@ router.delete("/student/profile", studentMiddleware, (req, res) => {
 });
 
 
+
+router.post("/admin/students",adminMiddleware,(req,res)=>{
+    Students.find({ registerno: req.body.registerno })
+    .then(foundStudents => {
+        if (foundStudents.length > 0) {
+            res.send("Student already exists");
+        } else {
+            const [registerno,name,course,yearofadmission, password]=[req.body.registerno,req.body.name,req.body.course,req.body.yearofadmission,req.body.password]  
+            
+            if(registerno.length<=0 || name.length<=0||course.length<=0||yearofadmission.length<=0 || password.length<=0){
+                res.send("Error Enter details properly")
+                return;
+            }
+            const newStudent = new Students({
+                registerno: registerno,
+                name: name,
+                course: course,
+                yearofadmission: yearofadmission,
+                password:password
+            });
+
+            newStudent.save()
+                .then(() => {
+                    res.send("Student Added Successfully");
+                })
+                .catch(err => {
+                    res.status(500).send("Error : " + err);
+                });
+        }
+    })
+    .catch(err => {
+        res.status(500).send("Error: " + err);
+    });
+})
+
 router.get("/admin/students",adminMiddleware,(req,res)=>{
     const registerno=req.query.registerno
     var q={}

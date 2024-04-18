@@ -56,8 +56,8 @@ router.put("/admin/booktransactions/:transactionId",adminMiddleware,((req,res)=>
     })
 }))
 
-router.delete("/admin/booktransactions/:transactionId",adminMiddleware,(req,res) =>{
-    const transactionId= req.params.transactionId;
+router.delete("/admin/booktransactions",adminMiddleware,(req,res) =>{
+    const transactionId= req.query.Id;
     BT.deleteOne({_id:transactionId})
     .then(()=>{
         res.send("Successfully deleted")

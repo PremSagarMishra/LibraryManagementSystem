@@ -4,6 +4,31 @@ const Books=require("../Models/bookModel")
 
 const {adminMiddleware}=require("../middlewares/middleware")
 
+router.get("/admin/books",adminMiddleware,(req,res)=>{
+    var searchConstraint={}
+    const {title, author, ISBN}= req.query;
+    const id=req.query.id;
+    if(title!=null && title!=""){
+        searchConstraint={...searchConstraint,title:req.query.title}
+    }
+    if(author!=null && author!=""){
+        searchConstraint={...searchConstraint,author:req.query.author}
+    }
+    if(ISBN!=null && ISBN!=""){
+        searchConstraint={...searchConstraint,ISBN:req.query.ISBN}
+    }
+    if(id!=null && id!=""){
+        searchConstraint={...searchConstraint,_id:req.query.id}
+    }
+    console.log(searchConstraint)
+    Books.find(searchConstraint)
+    .then((books)=>{
+        res.send(books)
+    }).catch((err)=>{
+        res.send(err)
+    })
+
+})
 
 router.post("/admin/books",adminMiddleware,(req,res)=>{
     Books.findOne({ISBN:req.body.ISBN})
@@ -53,8 +78,9 @@ router.put("/admin/books",adminMiddleware,(req,res)=>{
 })
 
 router.delete("/admin/books",adminMiddleware,(req,res)=>{
-    const {id,ISBN}=req.body;
-    Books.deleteOne({_id:id,ISBN})
+    const {id}=req.body;
+    console.log("id "+id)
+    Books.deleteOne({_id:id})
     .then(()=>{
         res.send("Deleted Successfully")
 

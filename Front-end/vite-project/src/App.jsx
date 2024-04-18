@@ -10,8 +10,15 @@ import Home from './Components/Home';
 import { createContext, useEffect, useState } from 'react';
 import Logout from './Components/Logout';
 import StudentProfile from './Components/StudentProfile';
-import Books from './Components/Books';
-
+import AdminProfile from './Components/AdminProfile';
+import Students from "./Components/Students"
+import AddNewStudent from './Components/AddNewStudent';
+import ViewBooks from './Components/ViewBooks';
+import AddNewBooks from './Components/AddNewBooks';
+import UpdateBook from './Components/UpdateBook';
+import StudentBooks from './Components/StudentBooks';
+import Book from './Components/Book';
+import Transactions from './Components/Transactions';
 
 export const UserContext=createContext()
 function App() {
@@ -40,9 +47,17 @@ function App() {
       <Route path='/student/signup' element={<StudentSignup />} />
       <Route path='/admin/login' element={<AdminLogin />} />
       <Route path='/admin/signup' element={<AdminSignup />} />
+      <Route path='/admin/students/addnewstudent' element={<AddNewStudent />} />
+      <Route path='/admin/books' element={<ViewBooks />} />
+      <Route path='/admin/books/addnewbook' element={<AddNewBooks />} />
+      <Route path='/admin/books/updatebook' element={<UpdateBook />} />
       <Route path='/home' element={<Home />} />
-      <Route path='/student/profile' element={<StudentProfile/>} />
-      <Route path='/books' element={<Books />} />
+      <Route path='/student/profile' element={<StudentProfile />} />
+      <Route path='/student/books' element={<StudentBooks />} />
+      <Route path='/student/books/book' element={<Book />} />
+      <Route path='/admin/booktransactions' element={<Transactions />} />
+      <Route path='admin/students' element={<Students />} />
+      <Route path='/admin/profile' element={<AdminProfile />} />
       <Route path='/logout' element={<Logout />} />
       </Routes>
     </Router>

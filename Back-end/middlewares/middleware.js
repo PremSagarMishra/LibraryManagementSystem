@@ -40,11 +40,11 @@ const studentMiddleware= (req,res,next)=>{
 
 }
 const adminMiddleware= (req,res,next)=>{
-    if(!req.body.auth){
+    if(!req.query.auth){
         res.send("Unauthorised")
         return;
     }
-    const key=(req.body.auth)
+    const key=(req.query.auth)
     
         Admins.find({id:key})
         .then((foundAdmin)=>{

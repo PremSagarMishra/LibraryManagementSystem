@@ -86,6 +86,8 @@ const AdminLogin = () => {
         >
           Login
         </Button>
+        <br />
+        <p style={{textAlign:"center"}}>New here? <span style={{color:"green"}} onClick={()=>{navigate("/admin/signup")}}>Signup</span></p>
       </div>
     </div>
   );

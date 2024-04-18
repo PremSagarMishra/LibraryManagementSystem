@@ -121,8 +121,8 @@ const StudentProfile = () => {
     <div className='container'>
         <div className="home-card">
             <img src={Student} alt="" />
-            <TextField id="outlined-basic" placeholder="Register No" variant="outlined" value={registerno}/>
-            <TextField id="outlined-basic" placeholder="Name" variant="outlined"  value={name} onChange={(e)=>{
+            <TextField id="outlined-basic" style={{width:"100%"}} placeholder="Register No" variant="outlined" value={registerno}/>
+            <TextField id="outlined-basic" style={{width:"100%"}} placeholder="Name" variant="outlined"  value={name} onChange={(e)=>{
                 setName(e.target.value)
             }}/>
             <FormControl style={{width:"100%"}}>
@@ -139,12 +139,12 @@ const StudentProfile = () => {
             <MenuItem value="Bcom">Bcom</MenuItem>
           </Select>
         </FormControl>
-            <TextField id="outlined-basic" placeholder="Year of Admission" variant="outlined" type="number" value={yearofadmission} onChange={(e)=>{
+            <TextField id="outlined-basic" style={{width:"100%"}} placeholder="Year of Admission" variant="outlined" type="number" value={yearofadmission} onChange={(e)=>{
                 setYearOfAdmission(e.target.value)
             }}/>
             <div className="button-group">
             <Button variant="contained" color="success" onClick={handleUpdate}>Update</Button>
-            <Button variant="outlined" color="error" onClick={handleDelete}>Delete</Button>
+            <Button variant="outlined" color="error" onClick={handleDelete} >Delete</Button>
             </div>
             
 

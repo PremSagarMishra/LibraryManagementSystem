@@ -104,6 +104,7 @@ const StudentSignup = () => {
         >
           Signup
         </Button>
+        <p style={{textAlign:"center"}}>Already registered? <span style={{color:"green"}} onClick={()=>{navigate("/student/login")}}>Login</span></p>
       </div>
     </div>
   );

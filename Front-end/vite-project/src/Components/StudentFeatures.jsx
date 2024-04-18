@@ -4,7 +4,7 @@ export const StudentFeatures=[{
 },
 {
     title:"View Books",
-    link:"/books"
+    link:"/student/books"
 },
 {
     title:"logout",

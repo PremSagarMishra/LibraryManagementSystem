@@ -85,6 +85,7 @@ const AdminSignup = () => {
         >
           Signup
         </Button>
+        <p style={{textAlign:"center"}}>Already registered? <span style={{color:"green"}} onClick={()=>{navigate("/admin/login")}}>Login</span></p>
       </div>
     </div>
   );

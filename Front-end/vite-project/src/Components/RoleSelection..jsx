@@ -15,8 +15,8 @@ const RoleSelection = () => {
   }
 
   return (
-    <div className="container">
-      <div className="card">
+    <div className="container" style={{height:"80vh"}}>
+      <div className="card" style={{height:"400px",width:"33%"}}>
         <img src={admin} alt="" />
         <p>
           Register or login as a admin if you are a admin. Here you will get
@@ -30,7 +30,7 @@ const RoleSelection = () => {
         <Button onClick={()=>{navigate("/admin/login")}} variant="outlined">Login</Button>
         </div>
       </div>
-      <div className="card">
+      <div className="card" style={{height:"400px",width:"33%"}}>
         <img src={student} alt="" />
         <p>
           Register or login as a student if you are a student. Here you will get
