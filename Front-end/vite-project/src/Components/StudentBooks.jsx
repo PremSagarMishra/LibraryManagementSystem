@@ -58,7 +58,7 @@ const StudentBooks = () => {
         }
     }
   return (
-    <div className="container2">
+    <div className="container">
     <div style={{ display: "flex", justifyContent: "center", gap: "20px", alignContent: "center" }}>
         <TextField id="outlined-basic" placeholder="Search" style={{ width: "60%" }} variant="outlined" value={search} onChange={(e) => setSearch(e.target.value)} />
         <Button variant="contained" color="success" onClick={fetchData2}>Search</Button>
@@ -66,8 +66,8 @@ const StudentBooks = () => {
     <div className="container3">
     
         {books.map((book) => (
-            <div key={book._id} className="card2" onClick={()=>{navigate("/student/books/book?id="+book._id)}}>
-                <img style={{width:"100%",height:"100%"}} src={book.thumbnail}></img>
+            <div key={book._id} className="card3" onClick={()=>{navigate("/student/books/book?id="+book._id)}}>
+                <img style={{width:"100%"}} src={book.thumbnail}></img>
                 <p><span>Title:</span> {book.title}</p>
                 <p><span>Author:</span> {book.author}</p>
                 <p><span>ISBN: </span>{book.ISBN}</p>

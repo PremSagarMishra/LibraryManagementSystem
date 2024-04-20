@@ -90,7 +90,7 @@ const Students = () => {
 
     return (
         <div className="container2">
-            <div style={{ display: "flex", justifyContent: "center", gap: "20px", alignContent: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center", gap: "20px",width:"100%", alignContent: "center" }}>
                 <TextField id="outlined-basic" placeholder="Search" style={{ width: "60%" }} variant="outlined" value={search} onChange={(e) => setSearch(e.target.value)} />
                 <Button variant="contained" color="success" onClick={fetchData2}>Search</Button>
             </div>
@@ -100,7 +100,6 @@ const Students = () => {
                 </div>
                 {students.map((student) => (
                     <div key={student._id} className="card2">
-                        <p><span>Id:</span> {student._id}</p>
                         <p><span>Registerno:</span> {student.registerno}</p>
                         <p><span>Name: </span>{student.name}</p>
                         <p><span>Course:</span> {student.course}</p>

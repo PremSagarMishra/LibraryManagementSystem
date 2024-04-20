@@ -39,26 +39,26 @@ const studentMiddleware= (req,res,next)=>{
     
 
 }
-const adminMiddleware= (req,res,next)=>{
-    if(!req.query.auth){
-        res.send("Unauthorised")
-        return;
+const adminMiddleware = (req, res, next) => {
+    if (!req.query.auth) {
+      res.send("Unauthorised");
+      return;
     }
-    const key=(req.query.auth)
     
-        Admins.find({id:key})
-        .then((foundAdmin)=>{
-            if(foundAdmin){
-                next()
-            }else{
-                res.send("Unauthorised")
-                return;
-            }
-        }).catch(err=>{
-            res.send("Errror "+err)
-        })
+    const key = req.query.auth;
     
-
-}
+    Admins.findOne({ id: key })
+      .then(foundAdmin => {
+        if (foundAdmin) {
+          next();
+        } else {
+          res.send("Unauthorised");
+        }
+      })
+      .catch(err => {
+        res.send("Error " + err);
+      });
+  };
+  
 
 module.exports={adminSignupMiddleware, adminLoginMiddleware,studentMiddleware, adminMiddleware}

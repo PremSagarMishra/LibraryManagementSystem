@@ -84,8 +84,8 @@ const ViewBooks = () => {
     };
 
     return (
-        <div className="container2">
-            <div style={{ display: "flex", justifyContent: "center", gap: "20px", alignContent: "center" }}>
+        <div className="container">
+            <div style={{ display: "flex", justifyContent: "center", gap: "20px", alignContent: "center" ,width:"100%"}}>
                 <TextField id="outlined-basic" placeholder="Search" style={{ width: "60%" }} variant="outlined" value={search} onChange={(e) => setSearch(e.target.value)} />
                 <Button variant="contained" color="success" onClick={fetchData2}>Search</Button>
             </div>

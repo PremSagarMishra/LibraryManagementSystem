@@ -1,7 +1,6 @@
 
 import { TextField,Button } from "@mui/material"
 import { useState,useEffect } from "react";
-import axios from 'axios';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,12 +8,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { ImCross } from "react-icons/im";
+import { useNavigate } from "react-router";
 const Transactions = () => {
 
     const [isbn,setIsbn]=useState("");
     const [studentRegisternno,setStudentRegisterno]=useState("")
     const [returnDate,setReturnDate]=useState("")
     const [data2,setData]=useState([]);
+    const navigate=useNavigate();
 
     const auth=localStorage.getItem("key")
 
@@ -57,14 +59,14 @@ const Transactions = () => {
         const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is zero-indexed, so add 1
         const year = currentDate.getFullYear();
 
-        const formattedDate = `${day}/${month}/${year}`;
+        const formattedDate = `${year}-${month}-${day}`;
         try {
             const response = await fetch('http://localhost:3000/admin/booktransactions?auth='+auth, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ bookISBN:isbn,studentregisterno:studentRegisternno,transactiondate:formattedDate,returndate:returnDate})
+              body: JSON.stringify({ bookISBN:isbn,studentregisterno:studentRegisternno,transactiondate:formattedDate+"",returndate:returnDate})
             });
       
             if (!response.ok) {
@@ -89,12 +91,12 @@ const Transactions = () => {
           } catch (error) {
             console.error('Book transaction adding failed:', error.message);
             // Handle signup failure, show error message, etc.
-          }
+          } 
         };
 
 
-        const handleUpdate=()=>{
-            alert("Updated")
+        const handleUpdate=(id)=>{
+            navigate("/admin/booktransactions/updatetransaction?id="+id)
         }
         const handleDelete = async (id) => {
             try {
@@ -151,8 +153,9 @@ const Transactions = () => {
             <TableCell align="right">Registerno</TableCell>
             <TableCell align="right">TransactionDate</TableCell>
             <TableCell align="right">ReturnDate</TableCell>
+            <TableCell align="right">ReturnedDate</TableCell>
             <TableCell align="right">Penalty</TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell align="right">  </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -166,8 +169,9 @@ const Transactions = () => {
               </TableCell>
               <TableCell align="right">{data.studentregisterno}</TableCell>
               <TableCell align="right">{data.transactiondate}</TableCell>
-              <TableCell align="right">{data.returnDate}</TableCell>
-              <TableCell align="right">{data.penalty.protein}</TableCell>
+              <TableCell align="right">{data.returndate}</TableCell>
+              <TableCell align="right">{(data.returneddate==null || data.returneddate=="") ? <ImCross /> : data.returneddate}</TableCell>
+              <TableCell align="right">{data.penalty}</TableCell>
               <TableCell align="right"><span style={{display:"flex",gap:"10px"}}><Button variant="contained" color="success" onClick={()=>{handleUpdate(data._id)}}>Update</Button><Button variant="outlined" color="error" onClick={()=>{
                 handleDelete(data._id)
               }} >Delete</Button></span>

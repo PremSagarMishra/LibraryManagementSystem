@@ -19,6 +19,7 @@ import UpdateBook from './Components/UpdateBook';
 import StudentBooks from './Components/StudentBooks';
 import Book from './Components/Book';
 import Transactions from './Components/Transactions';
+import UpdateTransaction from './Components/UpdateTransaction';
 
 export const UserContext=createContext()
 function App() {
@@ -53,6 +54,7 @@ function App() {
       <Route path='/admin/books/updatebook' element={<UpdateBook />} />
       <Route path='/home' element={<Home />} />
       <Route path='/student/profile' element={<StudentProfile />} />
+      <Route path='/admin/booktransactions/updatetransaction' element={<UpdateTransaction />} />
       <Route path='/student/books' element={<StudentBooks />} />
       <Route path='/student/books/book' element={<Book />} />
       <Route path='/admin/booktransactions' element={<Transactions />} />
