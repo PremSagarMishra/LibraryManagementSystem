@@ -46,7 +46,7 @@ const Book = () => {
   return (
     <div className="container4">
         <div className="left">
-            <img style={{width:"100%",height:"100%"}} src={thumbnail}></img>
+            <img src={thumbnail}></img>
         </div>
 
         <div className="right">
@@ -64,7 +64,6 @@ const Book = () => {
             </div>
             <div>
             <h1>Description</h1>
-            <p>{description.toString()}</p>
             </div>
 
         </div>
